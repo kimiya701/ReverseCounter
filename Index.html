@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Counter</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            margin: 50px; 
+        }
+        #counter-display{
+            font-size: 3rem;
+            margin: 20px;
+
+        }
+        button{
+        padding: 10px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+        <h1>Auto Reverse Counter</h1>
+        <div id="counter-display">10</div>
+        <button id="start-button">Start Countdown</button>
+        <button id="stop-button">Stop Countdown</button>
+
+        <script>
+            let counterValue=10;
+            let interval;
+            const counterDisplay=document.getElementById('counter-display');
+            const startButton=document.getElementById('start-button');
+            const stopButton=document.getElementById('stop-button');
+
+            startButton.addEventListener('click', () => {
+        if(!interval){
+            interval=setInterval(() => {
+                if(counterValue>0){
+                    counterValue--;
+                    updateCounterDisplay();
+                }else{
+                    clearInterval(interval);
+                    interval=null;
+                    alert('Countdown Finished!');
+                }
+            },1000);
+        }
+    });
+
+    stopButton.addEventListener('click', () =>{
+        clearInterval(interval);
+        interval=null;
+    });
+
+    function updateCounterDisplay(){
+        counterDisplay.textContent=counterValue;
+
+        if(counterValue>0){
+            counterDisplay.style.color='#28a745';
+
+        }else{
+            counterDisplay.style.color='#dc3545';
+        }
+    }
+
+        </script>
+    
+</body>
+</html>
